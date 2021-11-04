@@ -39,7 +39,6 @@ function getUserMedia(constraints) {
         }
         
         //mediaControl.play();
-        console.log(media.currentSrc());
       })
       .catch(function (err) {
         alert('Error: ' + err);
