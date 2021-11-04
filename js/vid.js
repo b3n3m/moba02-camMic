@@ -39,7 +39,7 @@ function getUserMedia(options, successCallback, failureCallback) {
       theRecorder = recorder;
       console.log('MediaRecorder created');
       recorder.ondataavailable = recorderOnDataAvailable;
-      recorder.start(100);
+      recorder.start();
     }, function (err) {
       alert('Error: ' + err);
     });
