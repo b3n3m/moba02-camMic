@@ -38,7 +38,7 @@ function getUserMedia(constraints) {
           mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
         }
         
-        mediaControl.play();
+        //mediaControl.play();
       })
       .catch(function (err) {
         alert('Error: ' + err);
