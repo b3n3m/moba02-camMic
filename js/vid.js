@@ -74,31 +74,32 @@ function download() {
   document.body.appendChild(a);
   a.style = "display: none";
   a.href = url;
+  console.log(url.toString());
+  const reader = new FileReader();
 
-  var imgCanvas = document.createElement("canvas"),
-    imgContext = imgCanvas.getContext("2d");
+  reader.readAsDataURL(blob);
+  reader.onload = () => {var base64data = reader.result;
 
-  // Make sure canvas is as big as the picture
-  imgCanvas.width = a.width;
-  imgCanvas.height = a.height;
+    localStorage.setItem("test", base64data); console.log(localStorage.getItem("test"));
+    console.log("SUCCESS");
+}
 
-  // Draw image into canvas element
-  imgContext.drawImage(a, 0, 0, a.width, a.height);
 
-  // Get canvas contents as a data URL
-  var imgAsDataURL = imgCanvas.toDataURL("image/png");
-
-  // Save image into localStorage
-  try {
-    localStorage.setItem("a", imgAsDataURL);
-  } catch (e) {
-    console.log("Storage failed: " + e);
-  }
   // a.download = 'test.webm';
-  a.click();
+  //a.click();
 
   // setTimeout() here is needed for Firefox.
   setTimeout(function () {
     (window.URL || window.webkitURL).revokeObjectURL(url);
   }, 100);
+}
+
+
+function play(){
+    const recentMedia = localStorage.getItem("test");
+    
+    if (recentMedia) {
+        console.log("PLAY")
+        document.querySelector("#preview").setAttribute("src", recentMedia);
+    }else {console.log("FEHLER");}
 }
